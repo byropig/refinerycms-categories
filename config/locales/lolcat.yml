@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    categories:
+      title: Categories
+  admin:
+    categories:
+      actions:
+        create_new: CREATE NEW Category
+        reorder: REORDR Categories
+        reorder_done: DUN REORDERIN Categories
+      records:
+        title: Categories
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Categories YET. CLICK "CREATE NEW Category" 2 ADD UR FURST category.
+      category:
+        view_live_html: VIEW DIS category LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS category
+        delete: REMOOV DIS category FOREVR
+  categories:
+    show:
+      other: OTHR Categories

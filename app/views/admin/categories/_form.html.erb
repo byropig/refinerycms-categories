@@ -1,0 +1,49 @@
+<%= form_for [:admin, @category] do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @category,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.label :name -%>
+    <%= f.text_field :name, :class => 'larger widest'  -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :parent_id -%>
+	<!-- <%#= f.collection_select :parent_id, Category.order(:name), :id, :name, :prompt => "-- Select --"  -%> -->
+
+	<%= f.select :parent_id, nested_set_options(Category, @category) {|i| "#{'-' * i.level} #{i.name}" }, :include_blank => true %>	
+  </div>
+
+  <div class='field'>
+    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
+      <ul id='page_parts'>
+        <% [:description].each_with_index do |part, part_index| %>
+          <li class='ui-state-default<%= ' ui-state-active' if part_index == 0 %>'>
+            <%= link_to part.to_s.titleize, "##{part}" %>
+          </li>
+        <% end %>
+      </ul>
+
+      <div id='page_part_editors'>
+        <% [:description].each do |part| %>
+          <div class='page_part' id='<%= part %>'>
+            <%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.categories.category'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete', :title => @category.name)
+              } %>
+<% end -%>
+
+
+

@@ -1,0 +1,10 @@
+<ul id='sortable_list'>
+  <!-- <%#= render :partial => 'category', :collection => @categories %> -->
+  <%= render :partial => 'category', :collection => @categories.select{|p| p.parent_id.nil?}  %>
+</ul>
+<!-- <%#= render :partial => "/shared/admin/sortable_list",
+            :locals => {
+              :continue_reordering => (local_assigns.keys.include?(:continue_reordering)) ? continue_reordering : true
+            } %> -->
+<%= render :partial => "/shared/admin/sortable_list",
+           :locals => {:continue_reordering => !!local_assigns[:continue_reordering]} %>
