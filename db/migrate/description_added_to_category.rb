@@ -1,4 +1,4 @@
-class AddDescriptionToCategory < ActiveRecord::Migration
+class DescriptionAddedToCategory < ActiveRecord::Migration
   def self.up
     add_column :categories, :description, :text
   end

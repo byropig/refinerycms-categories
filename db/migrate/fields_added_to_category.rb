@@ -1,4 +1,4 @@
-class AddFieldsToCategory < ActiveRecord::Migration
+class FieldsAddedToCategory < ActiveRecord::Migration
   def self.up
     add_column :categories, :lft, :integer
     add_column :categories, :rgt, :integer
