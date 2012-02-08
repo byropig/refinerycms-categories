@@ -1,5 +1,9 @@
 class Category < ActiveRecord::Base
 
+  include Rails.application.routes.url_helpers 
+  #default_url_options[:host] = request.host_with_port
+
+  
   acts_as_indexed :fields => [:name]
 
   validates :name, :presence => true, :uniqueness => true
@@ -13,4 +17,11 @@ class Category < ActiveRecord::Base
   # Docs for acts_as_nested_set https://github.com/collectiveidea/awesome_nested_set
   acts_as_nested_set :dependent => :destroy # rather than :delete_all
   
+  def title
+    name
+  end
+  
+  def url
+    category_products_path(id)
+  end
 end
