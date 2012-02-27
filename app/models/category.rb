@@ -13,6 +13,7 @@ class Category < ActiveRecord::Base
   has_many :children, :class_name => "Category", :foreign_key => "parent_id"
     
   has_and_belongs_to_many :products
+  has_and_belongs_to_many :banners
   
   # Docs for acts_as_nested_set https://github.com/collectiveidea/awesome_nested_set
   acts_as_nested_set :dependent => :destroy # rather than :delete_all
